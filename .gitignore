@@ -37,8 +37,6 @@
 !/agent/skills/skill-creator/agents/**
 !/agent/skills/skill-creator/eval-viewer/
 !/agent/skills/skill-creator/eval-viewer/**
-!/agent/skills/figma-code-connect/references/
-!/agent/skills/figma-code-connect/references/**
 
 !/agent/managed-skills/
 /agent/managed-skills/*
