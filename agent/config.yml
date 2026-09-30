@@ -117,6 +117,4 @@ features:
 hideThinkingBlock: true
 isolation:
   backend: auto
-dev:
-  autoqaConsent: granted
 followUpMode: one-at-a-time
