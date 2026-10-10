@@ -2,7 +2,7 @@
 
 This public repository contains a sanitized copy of my Oh My Pi configuration.
 
-The source installation uses OMP `18.2.4`. The snapshot contains configuration, model overlays, global rules, commands, skills, and a GitNexus MCP definition with a read-only tool allowlist. It does not contain credentials, authenticated or organization-specific MCP servers, plugin runtime state, logs, sessions, databases, caches, or machine-specific paths.
+The source installation uses OMP `18.4.4`. The snapshot contains configuration, model overlays, global rules, commands, skills, and a GitNexus MCP definition with a read-only tool allowlist. It does not contain credentials, authenticated or organization-specific MCP servers, plugin runtime state, logs, sessions, databases, caches, or machine-specific paths.
 
 ## Important warning
 
@@ -78,7 +78,7 @@ Check OMP:
 omp --version
 ```
 
-Use OMP `18.2.4` to match the source installation. This snapshot does not pin provider-side model availability or reproduce credentials.
+Use OMP `18.4.4` to match the source installation. This snapshot does not pin provider-side model availability or reproduce credentials.
 
 ## Installation
 
@@ -251,10 +251,10 @@ These files contain model choices, not credentials. They are `--config` overlays
 |---|---|
 | `p2w.yml` | GitHub Copilot access to the configured Luna models |
 | `p2w-codex.yml` | OpenAI Codex access to the configured Luna models |
-| `p2w-codex-max.yml` | OpenAI Codex access to Astra and Luna models |
+| `p2w-codex-max.yml` | OpenAI Codex access to GPT-6.1 Sol and GPT-6 Luna models, with the source's low reasoning settings |
 | `f2p.yml` | LM Studio running with the configured Qwen model loaded; configure its connection locally |
 
-For example, select the Astra overlay after installation:
+For example, select the Sol overlay after installation:
 
 ```bash
 omp --config "$HOME/.omp/profiles/p2w-codex-max.yml"
@@ -368,7 +368,7 @@ Files under `agent/commands/` become slash commands in a new OMP session.
 | Command | Purpose | Extra requirement |
 |---|---|---|
 | `/create-skill` | Creates one validated managed skill without duplicating existing capabilities. | Automatic learning enabled |
-| `/pr-review` | Reviews the current GitHub pull request and drafts line comments after approval. | GitHub CLI authentication |
+| `/pr-review` | Reviews the checked-out GitHub pull request and writes `PR_REVIEW.md`; never posts comments or edits source. | GitHub CLI authentication |
 | `/self-review` | Reviews every change since `main` for evidence-backed correctness, security, architecture, and maintainability defects. | A Git repository with local `main` or `origin/main` |
 | `/simplify-code` | Removes accidental complexity while preserving observable behavior. | None |
 
@@ -506,6 +506,16 @@ The repository excludes these items:
 - installation-specific automatic QA reporting consent
 
 Do not copy your complete `~/.omp` directory into Git. Use an explicit allowlist.
+
+## Snapshot refresh: OMP 18.4.4
+
+- Refresh the base configuration and paid overlays to the source's GPT-6 Luna and GPT-6.1 Sol role assignments. Enable secret obfuscation without copying its local key or installation-specific QA consent.
+- Update global rules, the response reminder, review/simplification guidance, and OMP skill-authoring instructions from the source installation.
+- Add `i-have-adhd`, `stop-slop`, `session-handoff`, `lesson-learned`, `deprecation-and-migration`, `spec-to-code-compliance`, and `omp-setup-maintenance`, retaining their provenance and available license files.
+- Replace the retired `/omp-improve-setup` command with natural-language selection of `omp-setup-maintenance`. Remove an old installed `~/.omp/agent/commands/omp-improve-setup.md` after backing it up; the copy procedure preserves unrelated commands.
+- Keep the public GitNexus-only MCP definition and existing generic managed-skill adaptations rather than copying private integrations or company guidance.
+- Plugin-supplied Ponytail guidance and the optional behavior-control configuration remain historical snapshot assets; they are not evidence of an enabled verifier in the current installation.
+
 
 ### Differences from the source machine
 

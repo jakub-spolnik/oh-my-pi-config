@@ -61,6 +61,8 @@ edit:
   mode: hashline
 security:
   enabled: true
+secrets:
+  enabled: true
 statusLine:
   preset: custom
   separator: powerline

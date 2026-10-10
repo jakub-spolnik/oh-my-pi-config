@@ -92,6 +92,22 @@ The local skill points to the floating `main` branch. It does not record an immu
 
 Several existing skills were created or merged locally and do not contain complete provenance metadata. Do not sublicense them as a single licensed work. New local skills without sufficient source and license information are excluded from this sync.
 
+## OMP 18.4.4 skill refresh
+
+The following skills retain their source revisions and redistribution notices in their own directories. Their licenses apply separately, not to this whole repository:
+
+| Skill | Source | License |
+|---|---|---|
+| `i-have-adhd` | ayghri/i-have-adhd, `723af7d9afaf43eb871dbcce6129e2bf80de90d5` | MIT |
+| `stop-slop` | hardikpandya/stop-slop, `8da1f030185bdfe8471220585162991eaeb970e9` | MIT |
+| `session-handoff`, `lesson-learned` | softaworks/agent-toolkit, `3027f20f3181758385a1bb8c022d4041dfb4de84` | MIT |
+| `deprecation-and-migration` | addyosmani/agent-skills, `1401c8b8030e023baeebb31781a6653fe8e93026` | MIT |
+| `spec-to-code-compliance` | trailofbits/skills, `d1f1575cff97816e5cc08af66cd2506099c681d3` | CC BY-SA 4.0 |
+| `skill-creator` | anthropics/skills, `9d630808e4add0a7146de4af9384155d5dee350a` | Apache-2.0 |
+
+These are modified passive OMP adaptations; their provenance files describe the modifications. `spec-to-code-compliance` retains Trail of Bits attribution, its license URL, and ShareAlike terms. `skill-creator` replaces the former Claude-specific evaluation runners with an OMP workflow and retains `LICENSE.txt`. `omp-setup-maintenance` is migrated local configuration, not a newly imported third-party package.
+
+
 ## Documentation and ADRs
 
 File: `agent/skills/documentation-and-adrs/SKILL.md`

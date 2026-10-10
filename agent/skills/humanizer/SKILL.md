@@ -1,23 +1,23 @@
 ---
 name: humanizer
-description: Rewrite user-selected documentation prose to sound natural while preserving every technical fact, term, code block, link target, and intended meaning. Invoke only when the user explicitly asks to humanize, de-AI, or naturalize existing documentation; never apply automatically.
+description: Rewrite existing documentation only when the user explicitly invokes humanizer or asks to humanize/naturalize documentation. Preserve its facts and technical content. Ordinary anti-slop requests use stop-slop; plain-English technical explanations use simple-english.
 license: MIT
 metadata:
   source: "https://github.com/blader/humanizer"
   source_commit: "e2e92e7b4b8229253ed5c8e81dc65463fdeddda5"
   source_version: "2.11.2"
-  adaptation: "OpenCode SKILL.md; documentation-only, explicit invocation"
+  adaptation: "OMP skill; documentation-only, explicit invocation"
 ---
 
 # Humanizer for documentation
 
-This is an OpenCode adaptation of `blader/humanizer` at the pinned source commit above. It removes common AI-writing patterns from documentation without changing its technical meaning.
+This is an OMP adaptation of `blader/humanizer` at the pinned source commit above. It removes common AI-writing patterns from documentation without changing its technical meaning.
 
 ## Invocation gate
 
-Use this skill **only** when the user explicitly requests humanization, naturalization, removal of AI-sounding prose, or removal of chatbot artifacts in supplied or identified documentation.
+Use this skill **only** when the user explicitly names `humanizer` or asks to humanize or naturalize existing documentation.
 
-Do not infer that a document needs humanizing. Do not run this skill as part of ordinary documentation writing, review, editing, release notes, or a pull request. If the request is ambiguous, ask whether the user wants a humanizing rewrite rather than changing the document.
+Do not infer that a document needs humanizing. Ordinary requests such as “remove AI slop,” “make this less AI-sounding,” or “cut filler” use `stop-slop`, including when the text is documentation. Use `simple-english` for requests to explain technical material in plain English. Do not run this skill as part of ordinary documentation writing, review, release notes, or a pull request. Respect the document scope the user selected.
 
 ## Non-negotiable preservation rules
 
