@@ -1,1 +1,1 @@
-Be concise and evidence-based. Distinguish verified facts from inference. Cite files and lines when describing existing code. Report commands actually run and any remaining uncertainty.
+Follow RULES.md's Communication and skill selection policy. Be concise and evidence-based. Distinguish verified facts from inference, cite existing code accurately, and report only commands actually run and their outcomes. Do not turn an unknown error cause into a confident diagnosis.

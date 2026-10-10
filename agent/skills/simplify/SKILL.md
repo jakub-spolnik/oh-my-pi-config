@@ -1,6 +1,6 @@
 ---
 name: simplify
-description: Simplifies code for clarity without changing behavior. Use for readability, maintainability, and complexity reduction after behavior is understood.
+description: Simplify or refactor code for readability and maintainability while preserving observable behavior. Use after the behavior is understood; broad codebase overhaul requests follow the global balanced-control policy before implementation.
 ---
 
 # Code Simplification
@@ -8,6 +8,8 @@ description: Simplifies code for clarity without changing behavior. Use for read
 ## Overview
 
 Simplify code by reducing complexity while preserving exact behavior. The goal is not fewer lines — it's code that is easier to read, understand, modify, and debug. Every simplification must pass a simple test: "Would a new team member understand this faster than the original?"
+
+Follow RULES.md's balanced overhaul control: clear scoped refactors may proceed; broad overhauls begin with a proposal and target agreement. Do not invent opportunities in already clear code.
 
 ## When to Use
 
@@ -36,7 +38,7 @@ Before every change, ask:
 - Does this produce the same output for every input?
 - Does this maintain the same error behavior?
 - Does this preserve the same side effects and ordering?
-- Do all existing tests still pass without modification?
+- Do existing observable-contract tests still describe the preserved behavior? Do not rewrite assertions merely to accommodate a changed implementation; report unrun checks as unrun.
 
 ### 2. Follow Project Conventions
 
@@ -103,13 +105,9 @@ Signals:
 
 ### Step 3: Apply Changes Incrementally
 
-Make one simplification at a time.
+Apply a coherent set of scoped simplifications incrementally, preserving behavior at each step through the understood contract and relevant source/test evidence.
 
-For each simplification:
-
-1. Make the change
-2. Run relevant tests
-3. Keep it only if behavior is preserved
+Do not run tests after each edit. After the change is complete, perform the single end-of-change correctness self-review and, when warranted, the one narrow relevant check permitted by RULES.md. Skip command checks for small low-risk changes unless requested. On failure, stop validation and automatic repair; report the exact command and actual failure without retrying.
 
 Separate refactoring from feature work whenever possible.
 
@@ -124,15 +122,15 @@ After simplifying, confirm:
 
 ## Guidance for This Repository
 
-- Prefer straightforward TypeScript over clever compression
+- Follow the repository's actual language, framework and architecture conventions; prefer straightforward expression over clever compression.
 - Preserve existing runtime behavior, tests, and hooks
 - Favor explicit names and smaller focused helpers when they improve readability
 - Keep refactors tightly scoped to the task or review feedback
 
 ## Verification Checklist
 
-- [ ] Existing tests pass without modification
-- [ ] Build/typecheck/lint still pass
+- [ ] Observable behavior and public/persisted contracts are preserved; available evidence and unrun checks are distinguished.
+- [ ] Verification followed the global one-check/failure-stop policy; no formatter or per-edit check sweep was run.
 - [ ] No unrelated files were refactored
 - [ ] No error handling was weakened or removed
 - [ ] The result is simpler to review than the original

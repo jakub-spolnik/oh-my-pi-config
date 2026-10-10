@@ -16,6 +16,20 @@
 - Commit messages use `<TICKET-ID> | <description>` after the user supplies and approves the ticket ID and message.
 - GitHub pending PR reviews omit the `event` field. `COMMENT` submits immediately; `PENDING` is invalid.
 
+## Communication and skill selection
+
+- Select skills from the user's natural-language intent; do not require slash commands or exact skill names.
+- Use `i-have-adhd` for this user's answer-first, attention-friendly response default. A current request for full detail or a different style wins; never shorten scope or delegate agent-owned work to satisfy presentation rules.
+- Use `stop-slop` for drafting or revising prose. Choose one principal prose skill: `humanizer` for explicitly requested documentation humanization, or `simple-english` for its scoped plain-English technical prose. Do not stack full rewrites or apply prose styling to code and structured data.
+- Use `session-handoff` when the user asks to save or resume working context, and `lesson-learned` when they ask to reflect on a change. Do not capture notes or memories automatically.
+- The installed Ponytail plugin is the sole owner of minimalism skills. Its implementation guidance does not override requested completeness, response preferences, safety, or the execution policy below.
+
+## Balanced overhaul control
+
+- Apply clear, small, scoped implementation requests directly. For a broad codebase or OMP overhaul, inspect first, present a short ranked proposal, and agree on the target and boundaries before broad edits. Once that scope is confirmed, proceed without re-asking about each mechanical step.
+- Keep audits and plans read-only unless implementation is requested. Do not treat a broad improvement request as permission for destructive operations, production access, Git mutations, credential changes, approval-mode changes, new plugins or package installation.
+- Use `deprecation-and-migration` for replacing or retiring systems and persisted formats, `spec-to-code-compliance` for checking documented promises against code, and `omp-setup-maintenance` for setup audits and approved configuration fixes. Reuse existing architecture, simplify and review skills rather than adding another orchestrator.
+
 ## Review and execution policy
 
 - This policy governs all skills, checklists, and subagents, including mandatory test-first or quality-gate instructions. Only a later explicit user request authorizes retries or a different workflow.

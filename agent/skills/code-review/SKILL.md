@@ -23,21 +23,24 @@ Produce technical, actionable review output. Never rubber-stamp.
 4. Read the implementation in full context.
 5. Decide if the change is correct, safe, and maintainable.
 
+Review is read-only unless the user also requests implementation. Inspect relevant callers, contracts and configuration; use LSP references when available. Findings require exact evidence, a reachable consequence and a smallest defensible correction. A review with no actionable findings is valid.
+
+Follow RULES.md's execution policy: use existing evidence, distinguish unrun checks, and do not start a test/build/lint sweep. Any authorized narrow check is shared across the change; its failure stops validation and automatic repair. Use one coherent end-of-change review, not repeated persona/model-verifier loops.
+
 ### Review Checklist
 
 #### Correctness
 
 - Does it satisfy the request?
 - Does it match the plan?
-- Do tests pass?
-- Does the build pass?
+- What actual test/build results are available, and which checks remain unrun or uncertain?
 - Are edge cases handled?
 
 #### Code Quality
 
 - Is it readable and named well?
 - Is there duplication that should be removed?
-- Are functions too large or nested?
+- Do cohesion, naming, nesting or scattered responsibility make the actual behavior harder to understand? Do not extract code solely to satisfy size metrics.
 - Does it follow local idioms and patterns?
 
 #### Architecture
@@ -115,7 +118,7 @@ Use one of these:
 
 ### Adversarial Personas
 
-Run all three mindsets. Each must find at least one issue or at least one fragile assumption.
+Use the relevant perspectives below within one review pass, not as compulsory subagents or issue quotas. Never manufacture a defect or fragile assumption to make a perspective produce a finding.
 
 #### 1) Saboteur
 
@@ -179,11 +182,11 @@ Questions:
 
 ### Adversarial Rules
 
-- Do not say “LGTM, no issues.”
-- Do not soften findings.
+- If no actionable defect is supported, say so and report any remaining uncertainty; do not force findings.
+- State supported consequences directly, without inflated certainty or severity.
 - Do not review only changed lines.
 - Deduplicate repeated findings.
-- Promote findings caught by 2+ personas one severity level.
+- Assign severity from impact, reachability and evidence, not the number of perspectives that noticed it.
 
 ### Review Anti-Patterns
 
@@ -205,22 +208,22 @@ Verify review feedback before acting on it. Technical correctness over performat
 3. Verify against the codebase.
 4. Evaluate whether it is correct here.
 5. Respond technically.
-6. Implement one item at a time and test each change.
+6. Implement the authorized fixes within scope, then use the shared end-of-change review and permitted narrow check; do not test or format after every fix.
 
 ### Rules
 
 - Do not say “you’re absolutely right.”
 - Do not say “great point.”
 - Do not promise implementation before verification.
-- If unclear, stop and ask for clarification.
+- Resolve unclear facts from code and configuration first; ask only when a material intent or trade-off remains undecided.
 - If wrong, push back with facts and tests.
 - If correct, just fix it and state what changed.
 
 ### When Feedback Is Unclear
 
-- Stop.
-- Do not partially implement.
-- Ask which items are intended before proceeding.
+- Resolve missing facts from the code and configuration before questioning the user.
+- Pause only the affected ambiguous changes; clear, independent fixes may proceed when already authorized.
+- Ask only about remaining intent, scope or trade-offs that evidence cannot settle.
 
 ### When to Push Back
 
@@ -239,8 +242,8 @@ Use evidence, not defensiveness.
 1. Blocking issues
 2. Simple fixes
 3. Complex refactors
-4. Test each fix individually
-5. Verify no regressions
+4. Verify the completed changes proportionally under RULES.md's shared one-check/failure-stop policy.
+5. Report observed results and unverified regression risks without claiming unrun checks passed.
 
 ### GitHub Replies
 
@@ -250,7 +253,7 @@ Reply in the inline thread, not as a top-level PR comment.
 
 - Performative agreement
 - Blind implementation
-- Batch changes without testing
+- Claiming a batch of changes is verified without evidence, or running unapproved checks/retries
 - Proceeding while unclear
 - Avoiding justified pushback
 
